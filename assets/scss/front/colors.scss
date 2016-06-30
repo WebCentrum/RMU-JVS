@@ -1,0 +1,47 @@
+$color-site: #002776;
+$color-site-light: #b2bed6;
+$color-text: #667dad;
+$color-bg: #f0f1f4;
+
+$site-colors: (
+  muni: #002776,
+
+  faculty-law: #80379B,
+  faculty-med: #F01928,
+  faculty-sci: #00AF3F,
+  faculty-phi: #00A1DE,
+  faculty-ped: #FFA02F,
+  faculty-econ: #782327,
+  faculty-fi: #FCD450,
+  faculty-fss: #007b69,
+  faculty-fsps: #009AA6,
+
+  dept-sci: #002776,
+  dept-phil: #002776,
+  dept-ped: #002776,
+  dept-econ: #002776,
+  dept-fi: #002776,
+  dept-fss: #002776,
+  dept-fsps: #002776,
+  dept-ics: #002776,
+  dept-ceitec: #002776,
+  dept-arch: #002776,
+  dept-lang: #002776,
+  dept-czs: #002776,
+  dept-teiresias: #002776,
+  dept-ctt: #002776,
+  dept-iba: #002776,
+  dept-cerit: #002776,
+);
+
+body {
+
+  @each $key, $value in $site-colors {
+    &.#{$key} {
+      h1 {
+        border-color: $value;
+      }
+    }
+  }
+}
+

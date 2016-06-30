@@ -1,0 +1,24 @@
+{
+  "name": "rmu-jvs",
+  "version": "1.0.0",
+  "authors": [
+    "ICS MU <dis-web@ics.muni.cz>",
+    "Ondrej Muzik <muzik@ondrejmuzik.cz>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "foundation-sites": "~6.2.0",
+    "what-input": "~2.0.1"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true
+}

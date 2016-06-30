@@ -1,0 +1,450 @@
+// Header
+
+#header {
+  padding-top: 16px;
+  background: $white;
+  .contianer {
+    position: relative;
+  }
+  .brand {
+    display: inline-block;
+    svg {
+      width: 25px;
+      .text {
+        display: none;
+      }
+    }
+  }
+  .user {
+    margin-bottom: .5rem;
+    text-align: right;
+  }
+  .lang {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    > li {
+      > a {
+        border: none;
+        abbr {
+          display: none;
+        }
+      }
+    }
+    .is-dropdown-submenu-parent {
+      > a {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        border: none;
+        abbr {
+          display: inline;
+          color: inherit;
+          cursor: default;
+          border: none;
+        }
+        span {
+          display: none;
+        }
+      }
+    }
+    ul {
+      li {
+        &:first-child {
+          a {
+            border-top: none;
+          }
+        }
+      }
+    }
+  }
+  .search-toggle {
+    position: absolute;
+    top: 1.5rem;
+    right: 0.5rem;
+    .icon {
+      @include icon(search);
+      font-size: rem-calc(16);
+      color: $color-site;
+    }
+  }
+  .search {
+    clear: both;
+    width: 450px;
+    max-width: 100%;
+    [type=text] {
+      float: left;
+      width: 75%;
+      max-width: none;
+    }
+    [type=submit] {
+      float: right;
+      width: 23%;
+      padding-left: 0;
+      padding-right: 0;
+      text-align: center;
+    }
+  }
+
+  @include breakpoint(768) {
+    .brand {
+      float: left;
+      margin-bottom: 11px;
+      svg {
+        width: auto;
+        .text {
+          display: inline;
+        }
+      }
+    }
+    .top {
+      margin-top: -.85rem;
+      float: right;
+      text-align: right;
+    }
+    .user {
+      display: inline-block;
+    }
+    .lang {
+      position: relative;
+      top: auto;
+      right: auto;
+      display: inline-block;
+      top: .65rem;
+      margin-left: .75rem;
+      margin-right: 1rem;
+    }
+    .search-toggle {
+      position: relative;
+      top: auto;
+      right: auto;
+      margin-top: .3rem;
+      .icon {
+        font-size: rem-calc(14);
+      }
+    }
+  }
+
+  @include breakpoint(large) {
+    .lang {
+      .is-dropdown-submenu-parent {
+        > a {
+          abbr {
+            display: none;
+          }
+          span {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+#subheader {
+  .container {
+    padding: rem-calc(30) 0 0;
+  }
+  .brand {
+   @include grid-col;
+   width: auto;
+    a {
+      position: relative;
+      display: inline-block;
+      margin-bottom: rem-calc(15);
+      margin-right: rem-calc(20);
+      padding: rem-calc(8 22 7);
+      font-size: rem-calc(18);
+      font-weight: bold;
+      color: $white;
+      background-color: $color-site;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 0;
+        height: 0;
+        border-top: rem-calc(21) solid transparent;
+        border-left: rem-calc(21) solid $color-site;
+        border-bottom: rem-calc(21) solid transparent;
+      }
+      &:hover {
+        background-color: $color-text;
+        &:after {
+          border-left-color: $color-text;
+        }
+      }
+    }
+  }
+  .steps {
+    //@include grid-col;
+    float: left;
+    width: auto;
+    margin-top: .4rem;
+    margin-left: 0;
+    padding-left: rem-calc(10);
+    li {
+      counter-increment: stepsIndex;
+      //@include grid-col(4);
+      list-style: none;
+      > a,
+      > span {
+        @include clearfix;
+        display: block;
+        padding-top: 7px;
+        font-size: rem-calc(14);
+        font-weight: bold;
+        color: $color-text;
+        line-height: 1.25;
+        &:before {
+          content: counter(stepsIndex);
+          float: left;
+          display: block;
+          width: rem-calc(30);
+          height: rem-calc(30);
+          margin-top: -7px;
+          margin-right: 10px;
+          margin-bottom: .7rem;
+          font-size: rem-calc(19);
+          text-align: center;
+          border: 1px solid $color-text;
+          border-radius: 50%;
+          line-height: 1.6rem;
+        }
+        &.active {
+          color: $color-site;
+          &:before {
+            color: $white;
+            background-color: $color-site;
+            border-color: $color-site;
+          }
+        }
+      }
+      > a {
+        color: $color-site;
+        &:before {
+          border-color: $color-site;
+        }
+        &:hover {
+          &:before {
+            color: $white;
+            background-color: $color-site;
+          }
+        }
+      }
+    }
+  }
+
+  @include breakpoint(medium) {
+    .brand {
+      @include grid-col-size(4);
+      a {
+        margin-bottom: rem-calc(30);
+      }
+    }
+
+    .steps {
+      @include grid-col-size(8);
+      @include grid-row;
+      li {
+        @include grid-col(4);
+        padding: 0 !important;
+        &:last-child {
+          @include grid-column-end;
+        }
+        > a,
+        > span {
+          padding-top: 5px;
+          font-size: 1rem;
+          line-height: 1.25;
+          &:before {
+            width: rem-calc(50);
+            height: rem-calc(50);
+            margin-top: -5px;
+            font-size: rem-calc(32);
+            line-height: 2.6rem;
+          }
+          span {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  @include breakpoint(768) {
+    .steps {
+      li {
+        > a,
+        > span {
+          &:before {
+            float: left;
+          }
+        }
+      }
+    }
+  }
+
+  @include breakpoint(large) {
+    .steps {
+      li {
+        @include grid-col(3);
+      }
+    }
+  }
+
+}
+
+
+// Main, content, navigation
+
+#main {
+  @include grid-row;
+}
+
+
+#menu {
+  @include grid-col;
+  .location {
+    margin-bottom: rem-calc(40);
+  }
+  nav {
+    padding-bottom: 1px;
+    margin-bottom: 0;
+    background-color: $white;
+    > .toggle {
+      display: block;
+      position: relative;
+      .icon {
+        @include hamburger($color-text, $color-site);
+        position: absolute;
+        right: 1rem;
+        top: 1.1rem;
+      }
+    }
+    h1 {
+      padding: rem-calc(8 15);
+      margin: 0;
+      font-size: rem-calc(20);
+    }
+    > .items {
+      margin-top: rem-calc(10);
+      margin-bottom: rem-calc(10);
+    }
+  }
+
+  @include breakpoint(small down) {
+    nav {
+      &:last-of-type {
+        margin-bottom: rem-calc(40);
+      }
+      &:nth-of-type(1n+2) {
+        h1 {
+          border-top-color: $white;
+        }
+      }
+    }
+  }
+
+
+  @include breakpoint(medium) {
+    @include grid-col-size(3.625);
+    .location {
+//      margin-bottom: 7rem;
+      min-height: rem-calc(147);
+      margin-bottom: rem-calc(26);
+    }
+    nav {
+      margin-bottom: rem-calc(40);
+      > .toggle {
+        cursor: default;
+        .icon {
+          display: none;
+        }
+      }
+      h1 {
+        padding: rem-calc(20 22);
+        font-size: rem-calc(24);
+      }
+      .items {
+        display: block !important;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+
+  @include breakpoint(medium down) {
+    nav {
+      h1 {
+        padding-left: 4%;
+      }
+      .menu > li > a {
+        padding-left: 4%;
+      }
+    }
+  }
+
+
+  @include breakpoint(medium only) {
+    .menu.nested {
+      margin-left: .5rem;
+    }
+  }
+
+}
+
+
+#content {
+  @include grid-col;
+
+  @include breakpoint(medium) {
+    @include grid-col-size(8);
+    > h1 {
+      min-height: rem-calc(147);
+      margin-bottom: rem-calc(26);
+    }
+  }
+
+}
+
+
+// Footer
+
+#footer {
+  padding: rem-calc(30 0);
+  font-size: rem-calc(14);
+  background-color: $white;
+  .imprint,
+  .links {
+    @include grid-col;
+  }
+  .links {
+    margin-bottom: 1rem;
+    a {
+      display: block;
+    }
+  }
+
+  @include breakpoint(medium) {
+    .imprint,
+    .links {
+      @include grid-col-size(6);
+    }
+    .imprint {
+      float: left;
+    }
+    .links {
+      float: right;
+      text-align: right;
+      margin-bottom: 0;
+      a {
+        display: inline;
+        margin-left: .5rem;
+      }
+    }
+  }
+
+}

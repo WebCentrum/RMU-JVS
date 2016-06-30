@@ -1,0 +1,11 @@
+{
+  "minify": true,
+  "options": [
+    "setClasses"
+  ],
+  "feature-detects": [
+    "test/forms/placeholder",
+    "test/svg/asimg",
+    "test/svg/inline"
+  ]
+}

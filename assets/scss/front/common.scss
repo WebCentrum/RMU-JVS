@@ -1,0 +1,346 @@
+// Basic elements and classes
+
+h1 {
+  padding-top: 11px;
+  border-top: 4px solid $color-site;
+  @include breakpoint(medium) {
+    margin-bottom: 7rem;
+  }
+}
+
+p {
+  a {
+    border-bottom: 1px solid $color-site;
+  }
+}
+
+.lead {
+  margin-bottom: rem-calc(60);
+}
+
+h1 + .lead {
+  margin-top: -.5rem;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  margin-bottom: 1rem;
+  p + &,
+  ul + &,
+  ol + & {
+    margin-top: 3rem;
+  }
+}
+
+h4 {
+  margin-bottom: 0;
+  p + &,
+  ul + &,
+  ol + & {
+    margin-top: 2rem;
+  }
+}
+
+table {
+  tbody {
+    th {
+      text-align: left;
+    }
+  }
+}
+
+.label {
+  font-weight: $global-weight-bold;
+}
+
+
+// Common modules
+
+.container {
+  @include grid-row;
+  @if type-of($grid-column-gutter) == 'map' {
+    @each $breakpoint, $value in $grid-column-gutter {
+      $padding: rem-calc($value) / 2;
+
+      @include breakpoint($breakpoint) {
+        padding-left: $padding;
+        padding-right: $padding;
+      }
+    }
+  }
+}
+
+// Menus
+
+.menu {
+  li {
+    li {
+      a {
+        font-size: rem-calc(14);
+      }
+    }
+  }
+  > li {
+    > a {
+      border-top: 1px solid $color-bg;
+    }
+    &.active {
+      > a {
+        font-weight: $global-weight-bold;
+        color: $white;
+        background-color: $color-site;
+        &:hover {
+          background-color: $color-site !important;
+        }
+      }
+    }
+    li {
+      &.active {
+        > a {
+          font-weight: $global-weight-bold;
+          color: $color-text;
+          background: none;
+        }
+      }
+    }
+  }
+  a {
+    color: $color-site;
+    &:hover {
+      color: $white !important;
+      background-color: $color-text !important;
+      &:after {
+        color: $white !important;
+      }
+    }
+  }
+}
+
+.is-accordion-submenu-parent,
+.dropdown.menu > li.is-dropdown-submenu-parent {
+  > a {
+    position: relative;
+    &:after {
+      @include icon-styles;
+      content: icon-char(chevron-down);
+      position: absolute;
+      top: 50%;
+      margin-top: -4px;
+      right: 1rem;
+      font-size: .5rem;
+      color: $color-text;
+    }
+  }
+  &[aria-expanded='true'] {
+    > a {
+      &:after {
+        content: icon-char(chevron-up);
+        color: $color-site-light;
+      }
+    }
+  }
+}
+.dropdown.menu > li.is-dropdown-submenu-parent {
+  > a {
+    padding-right: 2.5rem;
+  }
+}
+
+
+// Items list
+
+.items-list {
+  > h1 {
+    margin-bottom: .5rem;
+    font-size: rem-calc(24);
+    border: none;
+  }
+  > ul {
+    margin: rem-calc(0 0 60);
+    list-style: none;
+    > li {
+      border-top: 1px solid $color-site;
+      &:last-child {
+        border-bottom: 1px solid $color-site;
+      }
+      > a {
+        position: relative;
+        display: block;
+        padding: rem-calc(9 9 9 31);
+        &:before {
+          @include icon-styles;
+          content: icon-char(arrow-right);
+          position: absolute;
+          top: rem-calc(14);
+          left: rem-calc(10);
+          font-size: rem-calc(9);
+          color: $color-text;
+        }
+        &:hover {
+          background-color: $color-site;
+          color: $white;
+          > h2,
+          > p {
+            color: $white;
+          }
+          &:before {
+            color: $color-site-light;
+          }
+        }
+        > h2 {
+          margin: rem-calc(0 75 0 0);
+          font-size: 1rem;
+        }
+        .notice {
+          position: absolute;
+          right: rem-calc(9);
+          top: rem-calc(11);
+          font-size: rem-calc(12);
+          font-weight: $global-weight-bold;
+          color: $color-text;
+        }
+        > p {
+          margin: rem-calc(3 0 1);
+          color: $color-text;
+          line-height: 1.429;
+        }
+      }
+    }
+  }
+
+  @include breakpoint(medium) {
+    > ul {
+      > li {
+        > a {
+          > h2 {
+            margin-right: rem-calc(100);
+          }
+          .notice {
+            top: rem-calc(10);
+            font-size: rem-calc(14);
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+// Switchable tabs
+
+.tabs {
+  border-bottom: 1px solid $color-site;
+  .tabs-title {
+    margin-bottom: -1px;
+    a {
+      width: rem-calc(120);
+      text-align: center;
+      border: 1px solid $color-site;
+      &:hover {
+        color: $color-site;
+      }
+      &[aria-selected='true'],
+      &:active {
+        color: $white;
+      }
+    }
+  }
+}
+.tabs-content {
+  margin-bottom: 2rem;
+}
+
+
+// Item detail
+
+.item-detail {
+  padding: 1.5rem 0 2.5rem;
+  border-bottom: 1px solid $color-site;
+  &:last-child {
+    border-bottom: none;
+  }
+  h1 {
+    padding: 0;
+    margin: 0;
+    border: none;
+    font-size: rem-calc(24);
+  }
+  .image {
+    margin: 1.8rem 0;
+    img + img {
+      margin-top: rem-calc(15);
+    }
+  }
+  .download {
+    @include button;
+    padding: 1.3rem 2rem;
+    margin-top: 1.5rem;
+    font-weight: $global-weight-bold;
+    border-radius: rem-calc(4);
+  }
+
+  &.alt {
+    padding-bottom: 1rem;
+    border-bottom: none;
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: $global-weight-bold;
+    }
+  }
+}
+
+.file-list {
+  list-style: none;
+  margin: 0;
+  li {
+    margin-bottom: 2px;
+    .label {
+      padding-left: 0.2rem;
+      padding-right: 0.2rem;
+      margin-right: .4rem;
+      min-width: rem-calc(45);
+      text-align: center;
+    }
+    a {
+      font-weight: $global-weight-bold;
+      border-bottom: 1px solid $color-site;
+      span {
+        font-weight: $global-weight-normal;
+      }
+    }
+    small {
+      font-size: rem-calc(14);
+    }
+  }
+}
+
+
+// Forms
+
+[type='text'], [type='password'], [type='date'], [type='datetime'],
+[type='datetime-local'], [type='month'], [type='week'], [type='email'],
+[type='number'], [type='search'], [type='tel'], [type='time'],
+[type='url'], [type='color'], textarea {
+  width: rem-calc(300);
+  max-width: 100%;
+  margin-bottom: rem-calc(8);
+  padding-left: rem-calc(20);
+  padding-right: rem-calc(20);
+}
+
+[type=submit] {
+  @include button;
+}
+
+html.placeholder .label-placeholder {
+  display: none;
+}
+
